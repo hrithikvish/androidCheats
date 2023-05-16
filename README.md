@@ -35,3 +35,5 @@ Random stuffs about Android App Development on Android Studio collected from sta
 5. Word Wrap TextView - 
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+
+6. Use JSON data from API Calls into Java - (goto file "JSON in JAVA.txt")
