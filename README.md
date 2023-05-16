@@ -41,3 +41,9 @@ Random stuffs about Android App Development on Android Studio collected from sta
 7. Volley Request Queue -  
       MainActivity File - requestQueue = Volley.newRequestQueue(this);
       Fragment File - requestQueue = Volley.newRequestQueue(requireContext());
+
+8. Image not showing -
+      android:src (if youre using somoething else)
+
+9. Image Not Loading from api url - 
+      Add this in Manifest - <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
