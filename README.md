@@ -31,3 +31,7 @@ Random stuffs about Android App Development on Android Studio collected from sta
     });
 
 4. Justify Text - android:justificationMode="inter_word"
+
+5. Word Wrap TextView - 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
