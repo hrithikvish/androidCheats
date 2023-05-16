@@ -37,3 +37,7 @@ Random stuffs about Android App Development on Android Studio collected from sta
     android:layout_height="fill_parent"
 
 6. Use JSON data from API Calls into Java - (goto file "JSON in JAVA.txt")
+
+7. Volley Request Queue -  
+      MainActivity File - requestQueue = Volley.newRequestQueue(this);
+      Fragment File - requestQueue = Volley.newRequestQueue(requireContext());
