@@ -4,6 +4,7 @@ Random stuffs about Android App Development on Android Studio collected from sta
 1. Make an INVISIBLE View VISIBLE on button click or something - [viewName].setVisibility(View.VISIBLE);
 
 2. Share Button - 
+
     shareBtn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -11,13 +12,13 @@ Random stuffs about Android App Development on Android Studio collected from sta
             sendIntent.setAction(Intent.ACTION_SEND);
             sendIntent.putExtra(Intent.EXTRA_TEXT, jokeBox.getText());
             sendIntent.setType("text/plain");
-
             Intent shareIntent = Intent.createChooser(sendIntent, null);
             startActivity(shareIntent);
         }
     });
        
 3. Copy to Clipboard Button - 
+
     copyBtn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -27,3 +28,5 @@ Random stuffs about Android App Development on Android Studio collected from sta
             Toast.makeText(MainActivity.this, "Joke Copied", Toast.LENGTH_SHORT).show();
         }
     });
+
+4. Justify Text - android:justificationMode="inter_word"
