@@ -49,3 +49,6 @@ Random stuffs about Android App Development on Android Studio collected from sta
       Add this in Manifest - <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
       Sometimes it may not load because the url is http and not https in that case add this in application tag in android manifest file - 
         android:usesCleartextTraffic="true"
+
+10. Enable BInding 
+    in gradle within android - buildFeatures { viewBinding true }
