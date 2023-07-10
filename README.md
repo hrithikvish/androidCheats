@@ -52,3 +52,7 @@ Random stuffs about Android App Development on Android Studio collected from sta
 
 10. Enable BInding 
     in gradle within android - buildFeatures { viewBinding true }
+
+11. Room database Dependency
+    - implementation "androidx.room:room-runtime:2.2.5"
+      annotationProcessor "androidx.room:room-compiler:2.2.5"
