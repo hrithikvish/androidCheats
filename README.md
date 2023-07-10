@@ -43,7 +43,7 @@ Random stuffs about Android App Development on Android Studio collected from sta
       Fragment File - requestQueue = Volley.newRequestQueue(requireContext());
 
 8. Image not showing -
-      android:src (if youre using somoething else)
+      android:src (if youre using something else)
 
 9. Image Not Loading from api url - 
       Add this in Manifest - <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -54,5 +54,11 @@ Random stuffs about Android App Development on Android Studio collected from sta
     in gradle within android - buildFeatures { viewBinding true }
 
 11. Room database Dependency
-    - implementation "androidx.room:room-runtime:2.2.5"
-      annotationProcessor "androidx.room:room-compiler:2.2.5"
+    implementation "androidx.room:room-runtime:2.5.2"
+    annotationProcessor "androidx.room:room-compiler:2.5.2"
+
+12. Binding in Fragments
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentRoomBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
