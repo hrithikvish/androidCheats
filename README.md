@@ -66,3 +66,12 @@ Random stuffs about Android App Development on Android Studio collected from sta
         binding = FragmentRoomBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
+
+15.     ArrayList<Note> notesArr = (ArrayList<Note>) databaseHelper.noteDao().getAllNotes();
+
+        ArrayList<String> notesString = new ArrayList<>();
+        for (Note note : notesArr) {
+            notesString.add(note.toString());
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, notesString);
