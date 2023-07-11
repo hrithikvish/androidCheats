@@ -57,7 +57,11 @@ Random stuffs about Android App Development on Android Studio collected from sta
     implementation "androidx.room:room-runtime:2.5.2"
     annotationProcessor "androidx.room:room-compiler:2.5.2"
 
-12. Binding in Fragments
+12. Close Activity - finish()
+
+13. Fragment Activity Crashing? Add the Button setOnCLickListener code in OnCreateView 
+
+14. Binding in Fragments
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentRoomBinding.inflate(inflater, container, false);
         return binding.getRoot();
