@@ -75,3 +75,13 @@ Random stuffs about Android App Development on Android Studio collected from sta
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, notesString);
+
+16. Refresh/ Replace Fragment
+
+    private void refreshFragment(Fragment fragment) {
+        FragmentManager fragmentManager  = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.commit();
+    }
+    
