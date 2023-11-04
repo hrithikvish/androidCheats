@@ -85,3 +85,20 @@ Random stuffs about Android App Development on Android Studio collected from sta
         fragmentTransaction.commit();
     }
     
+17. Make imageView appear round using cardView(See example below)
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="40dp"
+        app:cardBackgroundColor="@color/white">
+
+        <ImageView
+            android:id="@+id/profilePicture"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            tools:srcCompat="@tools:sample/avatars"/>
+
+    </androidx.cardview.widget.CardView>
