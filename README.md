@@ -5,38 +5,38 @@ Random stuffs about Android App Development on Android Studio collected from sta
     [viewName].setVisibility(View.VISIBLE);
 
 2. Share Button - 
-
-    shareBtn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, jokeBox.getText());
-            sendIntent.setType("text/plain");
-            Intent shareIntent = Intent.createChooser(sendIntent, null);
-            startActivity(shareIntent);
-        }
-    });
-       
+```java
+shareBtn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, jokeBox.getText());
+        sendIntent.setType("text/plain");
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
+    }
+});
+```
+ 
 3. Copy to Clipboard Button - 
-
-    copyBtn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText(null, jokeBox.getText());
-            clipboard.setPrimaryClip(clip);
-            Toast.makeText(MainActivity.this, "Joke Copied", Toast.LENGTH_SHORT).show();
-        }
-    });
+```java
+copyBtn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText(null, jokeBox.getText());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(MainActivity.this, "Joke Copied", Toast.LENGTH_SHORT).show();
+    }
+});
+```
 
 4. Justify Text - android:justificationMode="inter_word"
 
 5. Word Wrap TextView - 
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-
-6. Use JSON data from API Calls into Java - (goto file "JSON in JAVA.txt")
 
 7. Volley Request Queue -  
       MainActivity File - requestQueue = Volley.newRequestQueue(this);
@@ -67,37 +67,43 @@ Random stuffs about Android App Development on Android Studio collected from sta
         return binding.getRoot();
     }
 
-15.     ArrayList<Note> notesArr = (ArrayList<Note>) databaseHelper.noteDao().getAllNotes();
+15.     
+```java
+ArrayList<Note> notesArr = (ArrayList<Note>) databaseHelper.noteDao().getAllNotes();
 
-        ArrayList<String> notesString = new ArrayList<>();
-        for (Note note : notesArr) {
-            notesString.add(note.toString());
-        }
+ArrayList<String> notesString = new ArrayList<>();
+for (Note note : notesArr) {
+    notesString.add(note.toString());
+}
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, notesString);
+ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_list_item_1, notesString);
+```
 
 16. Refresh/ Replace Fragment
+```java
+private void refreshFragment(Fragment fragment) {
+    FragmentManager fragmentManager  = getFragmentManager();
+    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    fragmentTransaction.replace(R.id.frameLayout, fragment);
+    fragmentTransaction.commit();
+}
+```
 
-    private void refreshFragment(Fragment fragment) {
-        FragmentManager fragmentManager  = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, fragment);
-        fragmentTransaction.commit();
-    }
-    
 17. Make imageView appear round using cardView(See example below)
-    
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        app:cardCornerRadius="40dp"
-        app:cardBackgroundColor="@color/white">
-        <ImageView
-            android:id="@+id/profilePicture"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            tools:srcCompat="@tools:sample/avatars"/>
-    </androidx.cardview.widget.CardView>
+
+```xml
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="20dp"
+    app:cardCornerRadius="40dp"
+    app:cardBackgroundColor="@color/white">
+    <ImageView
+        android:id="@+id/profilePicture"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        tools:srcCompat="@tools:sample/avatars"/>
+</androidx.cardview.widget.CardView>
+```
