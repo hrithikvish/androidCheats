@@ -62,10 +62,12 @@ copyBtn.setOnClickListener(new View.OnClickListener() {
 13. Fragment Activity Crashing? Add the Button setOnCLickListener code in OnCreateView 
 
 14. Binding in Fragments
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentRoomBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-    }
+```java
+public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+binding = FragmentRoomBinding.inflate(inflater, container, false);
+return binding.getRoot();
+}
+```
 
 15.     
 ```java
