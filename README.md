@@ -109,3 +109,27 @@ private void refreshFragment(Fragment fragment) {
         tools:srcCompat="@tools:sample/avatars"/>
 </androidx.cardview.widget.CardView>
 ```
+
+18. Auto Capitalize first char in a editText
+```kotlin
+binding.edtName.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(editable: Editable?) {
+                if(editable.toString().isNotEmpty()) {
+                    val start = editable?.length; // Get current cursor position (end)
+                    val defaultName = editable.toString();
+
+                    if (Character.isLowerCase(defaultName[0])) {
+                        val firstLetterUppercase = defaultName.substring(0, 1).toUpperCase();
+                        val remainingString = defaultName.substring(1);
+                        val capitalizedName = firstLetterUppercase + remainingString;
+
+                        editable?.replace(0, editable.length, capitalizedName);
+
+                        Selection.setSelection(editable, start ?: -1);
+                    }
+                }
+            }
+        })
+```
