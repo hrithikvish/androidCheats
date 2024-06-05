@@ -133,3 +133,21 @@ binding.edtName.addTextChangedListener(object : TextWatcher {
             }
         })
 ```
+
+19. Dismissible SnackBar with rounded corners (corner radius)
+```kotlin
+val sb = Snackbar.make(
+    binding.root,
+    "Message String",
+    Snackbar.LENGTH_INDEFINITE
+).setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.snackbar_bg_yellow))
+    .setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+    .setActionTextColor(ContextCompat.getColor(requireContext(), R.color.red))
+    .apply {
+        view.background = resources.getDrawable(R.drawable.bg_rounded_snackbar, null)
+    }
+sb.setAction("Dismiss") {
+    sb.dismiss()
+}
+sb.show()
+```
