@@ -187,7 +187,7 @@ private fun genBitmapUri(bitmap: Bitmap): Uri {
 }
 ```
 
-21. making custom "Dialog" take full width of the screen
+21. making custom "Dialog" take full width of the screen<br>
 inside onCreate:
 ```kotlin
 window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
