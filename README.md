@@ -31,30 +31,9 @@ copyBtn.setOnClickListener(new View.OnClickListener() {
 });
 ```
 
-4. Justify Text - android:justificationMode="inter_word"
-
 5. Word Wrap TextView - 
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-
-7. Volley Request Queue -  
-      MainActivity File - requestQueue = Volley.newRequestQueue(this);
-      Fragment File - requestQueue = Volley.newRequestQueue(requireContext());
-
-8. Image not showing -
-      android:src (if youre using something else)
-
-9. Image Not Loading from api url - 
-      Add this in Manifest - <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-      Sometimes it may not load because the url is http and not https in that case add this in application tag in android manifest file - 
-        android:usesCleartextTraffic="true"
-
-10. Enable BInding 
-    in gradle within android - buildFeatures { viewBinding true }
-
-11. Room database Dependency
-    implementation "androidx.room:room-runtime:2.5.2"
-    annotationProcessor "androidx.room:room-compiler:2.5.2"
 
 12. Close Activity - finish()
 
@@ -112,25 +91,25 @@ private void refreshFragment(Fragment fragment) {
 18. Auto Capitalize first char in a editText
 ```kotlin
 binding.edtName.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun afterTextChanged(editable: Editable?) {
-                if(editable.toString().isNotEmpty()) {
-                    val start = editable?.length; // Get current cursor position (end)
-                    val defaultName = editable.toString();
+    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+    override fun afterTextChanged(editable: Editable?) {
+        if(editable.toString().isNotEmpty()) {
+            val start = editable?.length; // Get current cursor position (end)
+            val defaultName = editable.toString();
 
-                    if (Character.isLowerCase(defaultName[0])) {
-                        val firstLetterUppercase = defaultName.substring(0, 1).toUpperCase();
-                        val remainingString = defaultName.substring(1);
-                        val capitalizedName = firstLetterUppercase + remainingString;
+            if (Character.isLowerCase(defaultName[0])) {
+                val firstLetterUppercase = defaultName.substring(0, 1).toUpperCase();
+                val remainingString = defaultName.substring(1);
+                val capitalizedName = firstLetterUppercase + remainingString;
 
-                        editable?.replace(0, editable.length, capitalizedName);
+                editable?.replace(0, editable.length, capitalizedName);
 
-                        Selection.setSelection(editable, start ?: -1);
-                    }
-                }
+                Selection.setSelection(editable, start ?: -1);
             }
-        })
+        }
+    }
+})
 ```
 
 19. Dismissible SnackBar with rounded corners (corner radius)
@@ -240,44 +219,42 @@ binding = DataBindingUtil.inflate(
 24. dynamic dao queries
 ```kotlin
 override fun getPremium(
-        dummyParam1: Int,
-        dummyParam2: Int?,
-        dummyParam3: Int,
-        dummyParam4: String
-    ): [ReturnType] {
+    dummyParam1: Int,
+    dummyParam2: Int?,
+    dummyParam3: Int,
+    dummyParam4: String
+): [ReturnType] {
 
-        var queryString: String  // Query string
-        val args: ArrayList<Any?> = ArrayList() // List of bind parameters
+    var queryString: String  // Query string
+    val args: ArrayList<Any?> = ArrayList() // List of bind parameters
 
-        queryString = "SELECT something FROM someTable "
+    queryString = "SELECT something FROM someTable "
 
-        if (dummyParam2 != null) {
-            queryString += "WHERE dummyParam1 = ? AND dummyParam2 = ?"
-            args.add(dummyParam1)
-            args.add(dummyParam2)
-        } else {
-            queryString += "WHERE dummyParam1 = ? "
-            args.add(dummyParam1)
-        }
-
-        if(dummyParam3 != 0) {
-            queryString += "AND dummyParam3 = ? "
-            args.add(dummyParam3)
-        }
-
-        queryString += "And dummyParam4 = ? "
-        args.add(dummyParam4)
-
-        queryString += "LIMIT ?;"
-        args.add(10)
-
-        val simpleQuery = SimpleSQLiteQuery(queryString, args.toTypedArray())
-
-        return dao.getPremiumUsingRawQuery(simpleQuery)
-
+    if (dummyParam2 != null) {
+        queryString += "WHERE dummyParam1 = ? AND dummyParam2 = ?"
+        args.add(dummyParam1)
+        args.add(dummyParam2)
+    } else {
+        queryString += "WHERE dummyParam1 = ? "
+        args.add(dummyParam1)
     }
 
+    if(dummyParam3 != 0) {
+        queryString += "AND dummyParam3 = ? "
+        args.add(dummyParam3)
+    }
 
+    queryString += "And dummyParam4 = ? "
+    args.add(dummyParam4)
+
+    queryString += "LIMIT ?;"
+    args.add(10)
+
+    val simpleQuery = SimpleSQLiteQuery(queryString, args.toTypedArray())
+
+    return dao.getPremiumUsingRawQuery(simpleQuery)
+
+}
 @RawQuery(observedEntities = [EntityClassName::class])
 fun getPremiumUsingRawQuery(
     query: SupportSQLiteQuery
