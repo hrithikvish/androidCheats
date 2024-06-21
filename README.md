@@ -151,3 +151,38 @@ sb.setAction("Dismiss") {
 }
 sb.show()
 ```
+
+20. Share bitmap/image using Intent
+```kotlin
+
+val bitmapUri = genBitmapUri(bitmap)
+private fun startImageSharingIntent(bitmapUri: Uri?) {
+    try {
+        val sendIntent = Intent()
+        sendIntent.putExtra(Intent.EXTRA_STREAM, bitmapUri)
+        sendIntent.setAction(Intent.ACTION_SEND)
+        sendIntent.setPackage("com.whatsapp") // optional
+        sendIntent.setType("image/png")
+        sendIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        mContext.startActivity(sendIntent)
+        dismiss()
+    } catch (e: Exception) {
+        Log.d("SHARE-IMG-TAG", "shareImg:" + e.message)
+        Toast.makeText(mContext, "App not installed", Toast.LENGTH_SHORT).show()
+        dismiss()
+    }
+}
+
+private fun genBitmapUri(bitmap: Bitmap): Uri {
+    val fileName = "temp_image.png"
+    val outputFile = File(mContext.externalCacheDir, fileName)
+    val outputStream = outputFile.outputStream()
+
+    bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+    outputStream.flush()
+    outputStream.close()
+
+    val bitmapUri = FileProvider.getUriForFile(mContext, "${mContext.packageName}.fileprovider", outputFile)
+    return bitmapUri
+}
+```
