@@ -228,4 +228,12 @@ private fun getScreenShotFromView(v: View): Bitmap? {
 }
 ```
 
-23. 
+23. binding in dataBinding
+```kotlin
+binding = DataBindingUtil.inflate(
+    layoutInflater,
+    R.layout.abc,
+    null,
+    false
+)
+```
