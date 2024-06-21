@@ -237,3 +237,50 @@ binding = DataBindingUtil.inflate(
     false
 )
 ```
+
+24. dynamic dao queries
+```kotlin
+override fun getPremium(
+        dummyParam1: Int,
+        dummyParam2: Int?,
+        dummyParam3: Int,
+        dummyParam4: String
+    ): [ReturnType] {
+
+        var queryString: String  // Query string
+        val args: ArrayList<Any?> = ArrayList() // List of bind parameters
+
+        queryString = "SELECT something FROM someTable "
+
+        if (dummyParam2 != null) {
+            queryString += "WHERE dummyParam1 = ? AND dummyParam2 = ?"
+            args.add(dummyParam1)
+            args.add(dummyParam2)
+        } else {
+            queryString += "WHERE dummyParam1 = ? "
+            args.add(dummyParam1)
+        }
+
+        if(dummyParam3 != 0) {
+            queryString += "AND dummyParam3 = ? "
+            args.add(dummyParam3)
+        }
+
+        queryString += "And dummyParam4 = ? "
+        args.add(dummyParam4)
+
+        queryString += "LIMIT ?;"
+        args.add(10)
+
+        val simpleQuery = SimpleSQLiteQuery(queryString, args.toTypedArray())
+
+        return dao.getPremiumUsingRawQuery(simpleQuery)
+
+    }
+
+
+@RawQuery(observedEntities = [EntityClassName::class])
+fun getPremiumUsingRawQuery(
+    query: SupportSQLiteQuery
+): [ReturnType]
+```
