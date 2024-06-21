@@ -186,3 +186,45 @@ private fun genBitmapUri(bitmap: Bitmap): Uri {
     return bitmapUri
 }
 ```
+
+21. making custom "Dialog" take full width of the screen
+```koltin
+window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+window?.setLayout(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT)
+```
+
+22. take a screenshot of a view as Bitmap
+```kotlin
+private fun getScreenShotFromView(v: View): Bitmap? {
+    var screenshot: Bitmap? = null
+    try {
+        screenshot = Bitmap.createBitmap(v.measuredWidth, v.measuredHeight, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(screenshot)
+        v.draw(canvas)
+
+        if (v is CardView && v.radius > 0) {
+            val radius = v.radius
+            val output = Bitmap.createBitmap(screenshot.width, screenshot.height, Bitmap.Config.ARGB_8888)
+            val outputCanvas = Canvas(output)
+            val paint = Paint()
+            paint.isAntiAlias = true
+            paint.shader = BitmapShader(screenshot, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
+
+            outputCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
+
+            outputCanvas.drawRoundRect(
+                RectF(0f, 0f, screenshot.width.toFloat(), screenshot.height.toFloat()),
+                radius, radius, paint
+            )
+            screenshot.recycle()
+            return output
+        }
+
+    } catch (e: Exception) {
+        Log.d("SHARE-IMG-TAG", "Failed because: " + e.message)
+    }
+    return screenshot
+}
+```
+
+23. 
