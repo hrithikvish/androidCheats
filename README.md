@@ -260,3 +260,13 @@ fun getPremiumUsingRawQuery(
     query: SupportSQLiteQuery
 ): [ReturnType]
 ```
+
+25. Splash Screen API
+```java
+
+implementation("androidx.core:core-splashscreen:1.0.1")
+
+android:theme="@style/Theme.App.Starting" // in manifest <application>
+
+installSplashScreen() // in launcher Activity
+```
