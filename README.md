@@ -266,6 +266,13 @@ fun getPremiumUsingRawQuery(
 
 implementation("androidx.core:core-splashscreen:1.0.1")
 
+// in themes.xml
+<style name="Theme.App.Starting" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">@color/xx</item>
+    <item name="windowSplashScreenAnimatedIcon">@drawable/xx</item>
+    <item name="postSplashScreenTheme">@style/xx</item>
+</style>
+
 android:theme="@style/Theme.App.Starting" // in manifest <application>
 
 installSplashScreen() // in launcher Activity
