@@ -277,3 +277,27 @@ android:theme="@style/Theme.App.Starting" // in manifest <application>
 
 installSplashScreen() // in launcher Activity
 ```
+
+26. Result Sealed class for MVVM
+```java
+sealed class Result<T>(
+    val data: T? = null,
+    val message: String? = null
+) {
+    class Success<T>(
+        data: T?
+    ): Result<T>(
+        data = data
+    )
+
+    class Error<T>(
+        message: String
+    ): Result<T>(
+        null,
+        message
+    )
+
+    class Loading<T>: Result<T>()
+}
+
+```
