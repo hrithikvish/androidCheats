@@ -302,7 +302,7 @@ sealed class Result<T>(
 
 ```
 27. Nav graph activity setup
-```java
+```xml
 <androidx.fragment.app.FragmentContainerView // or just "fragment"
     android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_width="match_parent"
