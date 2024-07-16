@@ -301,3 +301,12 @@ sealed class Result<T>(
 }
 
 ```
+27. Nav graph activity setup
+```java
+<androidx.fragment.app.FragmentContainerView // or just "fragment"
+    android:name="androidx.navigation.fragment.NavHostFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:defaultNavHost="true"
+    app:navGraph="@navigation/bmi_nav_graph" />
+```
