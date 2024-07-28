@@ -310,3 +310,16 @@ sealed class Result<T>(
     app:defaultNavHost="true"
     app:navGraph="@navigation/bmi_nav_graph" />
 ```
+28. LargeLog LongLog Large log long log
+```java
+
+//https://stackoverflow.com/questions/8888654/android-set-max-length-of-logcat-messages
+fun largeLog(tag: String, content: String) {
+    if (content.length > 4000) {
+        Log.d(tag, content.substring(0, 4000))
+        log(tag, content.substring(4000))
+    } else {
+        Log.d(tag, content)
+    }
+}
+```
