@@ -313,7 +313,7 @@ sealed class Result<T>(
 28. LargeLog LongLog Large log long log
 ```java
 
-//https://stackoverflow.com/questions/8888654/android-set-max-length-of-logcat-messages
+// https://stackoverflow.com/a/25734136/14400320
 fun largeLog(tag: String, content: String) {
     if (content.length > 4000) {
         Log.d(tag, content.substring(0, 4000))
