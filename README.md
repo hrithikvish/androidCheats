@@ -317,7 +317,7 @@ sealed class Result<T>(
 fun largeLog(tag: String, content: String) {
     if (content.length > 4000) {
         Log.d(tag, content.substring(0, 4000))
-        log(tag, content.substring(4000))
+        largeLog(tag, content.substring(4000))
     } else {
         Log.d(tag, content)
     }
