@@ -323,3 +323,16 @@ fun largeLog(tag: String, content: String) {
     }
 }
 ```
+
+29. bottom navigation with Nav graph
+```kotlin
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+
+    val navHostFragment = supportFragmentManager.findFragmentById(R.id.recipeNavHost) as NavHostFragment
+    val recipeNavController = navHostFragment.navController
+    setupWithNavController(binding.bottomNavView, recipeNavController)
+}
+```
