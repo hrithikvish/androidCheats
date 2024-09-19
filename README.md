@@ -336,3 +336,21 @@ override fun onCreate(savedInstanceState: Bundle?) {
     setupWithNavController(binding.bottomNavView, recipeNavController)
 }
 ```
+30. internet check
+```kotlin
+fun hasInternetConnection(): Boolean {
+    val connectivityManager =
+        getApplication<Application>().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+    val network = connectivityManager.activeNetwork ?: return false
+    val networkCapabilities =
+        connectivityManager.getNetworkCapabilities(network) ?: return false
+
+    return when {
+        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+        else -> false
+    }
+}
+```
