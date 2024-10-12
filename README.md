@@ -174,36 +174,33 @@ window?.setLayout(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.L
 
 22. take a screenshot of a view as Bitmap
 ```kotlin
-private fun getScreenShotFromView(v: View): Bitmap? {
+fun getScreenShotFromView(v: View): Bitmap? {
     var screenshot: Bitmap? = null
     try {
-        screenshot = Bitmap.createBitmap(v.measuredWidth, v.measuredHeight, Bitmap.Config.ARGB_8888)
+        screenshot = Bitmap.createBitmap(v.width, v.height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(screenshot)
         v.draw(canvas)
-
-        if (v is CardView && v.radius > 0) {
-            val radius = v.radius
-            val output = Bitmap.createBitmap(screenshot.width, screenshot.height, Bitmap.Config.ARGB_8888)
-            val outputCanvas = Canvas(output)
-            val paint = Paint()
-            paint.isAntiAlias = true
-            paint.shader = BitmapShader(screenshot, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
-
-            outputCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
-
-            outputCanvas.drawRoundRect(
-                RectF(0f, 0f, screenshot.width.toFloat(), screenshot.height.toFloat()),
-                radius, radius, paint
-            )
-            screenshot.recycle()
-            return output
-        }
-
-    } catch (e: Exception) {
-        Log.d("SHARE-IMG-TAG", "Failed because: " + e.message)
+        return screenshot
+    }
+    catch (e: Exception) {
+        Log.d(TAG, "Failed because: " + e.message)
     }
     return screenshot
 }
+
+fun genBitmapUri(bitmap: Bitmap): Uri {
+    val fileName = "image.png"
+    val outputFile = File(mContext.externalCacheDir, fileName)
+    val outputStream = outputFile.outputStream()
+
+    bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+    outputStream.flush()
+    outputStream.close()
+
+    val bitmapUri = FileProvider.getUriForFile(mContext, "${mContext.packageName}.provider", outputFile)
+    return bitmapUri
+}
+
 ```
 
 23. binding in dataBinding
@@ -353,4 +350,15 @@ fun hasInternetConnection(): Boolean {
         else -> false
     }
 }
+```
+
+31. mail image using intent
+```kotlin
+Intent emailIntent = new Intent(Intent.ACTION_SEND);
+emailIntent.setType("message/rfc822");
+emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email});
+emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
+emailIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
+emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+startActivity(Intent.createChooser(emailIntent, "Send email..."));
 ```
