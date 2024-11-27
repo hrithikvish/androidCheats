@@ -362,3 +362,8 @@ emailIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
 emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 startActivity(Intent.createChooser(emailIntent, "Send email..."));
 ```
+
+32. remove chip having too much vertical margin when setting dynamically in chipgroup
+```kotlin
+chip.setEnsureMinTouchTargetSize(false)
+```
