@@ -367,3 +367,16 @@ startActivity(Intent.createChooser(emailIntent, "Send email..."));
 ```kotlin
 chip.setEnsureMinTouchTargetSize(false)
 ```
+
+33. image url to bitmap
+```kotlin
+private fun getBitmapFromUrl(imageUrl: String): Bitmap? {
+    return try {
+        val url = URL(imageUrl)
+        BitmapFactory.decodeStream(url.openStream())
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
+    }
+}
+```
