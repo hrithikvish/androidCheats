@@ -380,3 +380,17 @@ private fun getBitmapFromUrl(imageUrl: String): Bitmap? {
     }
 }
 ```
+34. kotlin dsl gradle, custom apk name
+```kotlin
+applicationVariants.all {
+    val variant = this
+    outputs.forEach { output ->
+        val outputImpl = output as com.android.build.gradle.internal.api.BaseVariantOutputImpl
+        val buildType = variant.buildType.name
+        val abi = output.filters.find { it.filterType == com.android.build.api.variant.FilterConfiguration.FilterType.ABI.toString() }?.identifier
+        val abiPart = abi?.let { "_$it" } ?: ""
+
+        outputImpl.outputFileName = "Experiments_${buildType}_v${variant.versionName}(${variant.versionCode})${abiPart}.apk"
+    }
+}
+```
